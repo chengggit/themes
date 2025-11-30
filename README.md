@@ -18,11 +18,11 @@ Your theme repo must include these files:
 your-theme-repo/
 ├── metadata.json   # Theme info (required)
 ├── style.css       # Your CSS (required)
-├── cover.png       # Preview image, 16:9 recommended (required)
+├── cover.png       # Cover image (optional - first image used if missing)
 ├── shader.json     # Shader config (optional)
-└── images/         # Additional screenshots (optional)
-    ├── preview1.png
-    └── preview2.png
+└── images/         # Screenshots (required - at least one)
+    ├── 1.png
+    └── 2.png
 ```
 
 ### 2. Create `metadata.json`
@@ -33,25 +33,25 @@ your-theme-repo/
   "title": "Your Theme Name",
   "description": "A brief description of your theme and what makes it unique.",
   "creators": ["your-github-username"],
-  "minVersion": "3.0.0",
+  "minVersion": "2.0.5.6",
   "hasShaders": false,
   "version": "1.0.0",
   "tags": ["dark", "minimal", "colorful"],
-  "images": ["preview1.png", "preview2.png"]
+  "images": ["1.png", "2.png"]
 }
 ```
 
-| Field       | Required | Description                                    |
-| ----------- | -------- | ---------------------------------------------- |
-| id          | Yes      | Unique identifier (lowercase, hyphens allowed) |
-| title       | Yes      | Display name                                   |
-| description | Yes      | What your theme does                           |
-| creators    | Yes      | Array of GitHub usernames                      |
-| minVersion  | Yes      | Minimum Better Lyrics version required         |
-| hasShaders  | Yes      | Whether theme includes shader.json             |
-| version     | Yes      | Your theme's version (semver)                  |
-| tags        | No       | Searchable tags                                |
-| images      | No       | Filenames in the images/ folder                |
+| Field       | Required | Description                                                                 |
+| ----------- | -------- | --------------------------------------------------------------------------- |
+| id          | Yes      | Unique identifier (lowercase, hyphens allowed)                              |
+| title       | Yes      | Display name                                                                |
+| description | Yes      | What your theme does                                                        |
+| creators    | Yes      | Array of GitHub usernames                                                   |
+| minVersion  | Yes      | Minimum Better Lyrics version required                                      |
+| hasShaders  | Yes      | Whether theme includes shader.json                                          |
+| version     | Yes      | Your theme's version (semver)                                               |
+| tags        | No       | Searchable tags                                                             |
+| images      | Yes      | Filenames in the images/ folder (first image used as cover if no cover.png) |
 
 ### 3. Submit a Pull Request
 
@@ -72,7 +72,8 @@ your-theme-repo/
 ## Guidelines
 
 - Test your theme with the latest Better Lyrics version
-- Use a clear, high-quality cover image (1280x720 or similar 16:9 ratio)
+- Include at least one screenshot in the images/ folder
+- Use 16:9 aspect ratio for images (1280x720 recommended)
 - Keep your description concise but informative
 - Don't include malicious or obfuscated CSS
 
