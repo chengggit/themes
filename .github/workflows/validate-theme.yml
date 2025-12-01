@@ -1,0 +1,94 @@
+name: Validate Theme
+
+on:
+  pull_request:
+    paths:
+      - 'index.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+
+      - name: Checkout base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+          path: base
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Get new themes
+        id: new-themes
+        run: |
+          jq -r '.themes[].repo' base/index.json 2>/dev/null | sort > old_themes.txt || echo "" > old_themes.txt
+          jq -r '.themes[].repo' index.json | sort > new_themes.txt
+          NEW_THEMES=$(comm -13 old_themes.txt new_themes.txt)
+          echo "themes<<EOF" >> $GITHUB_OUTPUT
+          echo "$NEW_THEMES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Validate themes
+        id: validate
+        if: steps.new-themes.outputs.themes != ''
+        run: |
+          RESULTS=""
+          HAS_ERRORS=false
+
+          while IFS= read -r repo; do
+            [ -z "$repo" ] && continue
+            echo "Validating: $repo"
+
+            # Clone the theme repo
+            git clone --depth 1 "https://github.com/$repo.git" theme-repo 2>/dev/null
+
+            if [ ! -d "theme-repo" ]; then
+              RESULTS="$RESULTS\n### $repo\nFailed to clone repository\n"
+              HAS_ERRORS=true
+              continue
+            fi
+
+            # Run validation
+            OUTPUT=$(npx create-bl-theme@latest validate theme-repo 2>&1) || HAS_ERRORS=true
+            RESULTS="$RESULTS\n### $repo\n\`\`\`\n$OUTPUT\n\`\`\`\n"
+
+            rm -rf theme-repo
+          done <<< "${{ steps.new-themes.outputs.themes }}"
+
+          echo "results<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$RESULTS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          echo "has_errors=$HAS_ERRORS" >> $GITHUB_OUTPUT
+
+      - name: Comment on PR
+        if: steps.new-themes.outputs.themes != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const results = `${{ steps.validate.outputs.results }}`.trim();
+            const hasErrors = '${{ steps.validate.outputs.has_errors }}' === 'true';
+
+            let body = '## Theme Validation Results\n\n';
+            body += results + '\n\n';
+            body += hasErrors ? 'Please fix the errors above.' : 'All checks passed.';
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: body
+            });
+
+      - name: Fail if errors
+        if: steps.validate.outputs.has_errors == 'true'
+        run: exit 1

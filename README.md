@@ -10,6 +10,20 @@ Open the Better Lyrics extension options → **Themes** tab → **Browse Themes*
 
 Want to add your theme to the store? Follow these steps:
 
+### Quick Start
+
+Scaffold a new theme instantly with the CLI:
+
+```bash
+npx create-bl-theme@latest my-theme
+```
+
+This creates a ready-to-use theme with all required files. You can also validate your theme before submitting:
+
+```bash
+npx create-bl-theme@latest validate ./my-theme
+```
+
 ### 1. Create Your Theme Repository
 
 Your theme repo must include these files:
