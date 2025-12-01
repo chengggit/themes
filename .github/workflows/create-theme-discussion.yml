@@ -44,10 +44,19 @@ jobs:
           NEW_THEMES=$(comm -13 old_themes.txt new_themes.txt | tr '\n' ' ')
           echo "themes=$NEW_THEMES" >> $GITHUB_OUTPUT
 
+      - name: Get repository node ID
+        if: steps.new-themes.outputs.themes != ''
+        id: repo-id
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPO_NODE_ID=$(gh api graphql -f query='query { repository(owner: "${{ github.repository_owner }}", name: "${{ github.event.repository.name }}") { id } }' --jq '.data.repository.id')
+          echo "node_id=$REPO_NODE_ID" >> $GITHUB_OUTPUT
+
       - name: Create discussions for new themes
         if: steps.new-themes.outputs.themes != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           chmod +x .github/scripts/create-discussion.sh
-          .github/scripts/create-discussion.sh "${{ steps.new-themes.outputs.themes }}" "${{ github.repository_id }}" "${{ vars.DISCUSSION_CATEGORY_ID }}"
+          .github/scripts/create-discussion.sh "${{ steps.new-themes.outputs.themes }}" "${{ steps.repo-id.outputs.node_id }}" "${{ vars.DISCUSSION_CATEGORY_ID }}"
