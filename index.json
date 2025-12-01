@@ -1,3 +1,5 @@
 {
-  "themes": [{ "repo": "boidushya/apple-music" }]
+  "themes": [
+		{ "repo": "boidushya/apple-music" }
+	]
 }
