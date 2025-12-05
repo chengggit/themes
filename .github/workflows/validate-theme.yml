@@ -51,7 +51,7 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token-commit.outputs.token }}
         run: |
-          git config user.name "better-lyrics-themes[bot]"
+          git config user.name "Harmonizer[bot]"
           git config user.email "better-lyrics-themes[bot]@users.noreply.github.com"
           git add index.json
           git commit -m "chore: format index.json"
@@ -251,14 +251,14 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token-vendor.outputs.token }}
         run: |
-          git config user.name "better-lyrics-themes[bot]"
+          git config user.name "Harmonizer[bot]"
           git config user.email "better-lyrics-themes[bot]@users.noreply.github.com"
           git add themes/ index.lock.json
           git commit -m "chore: vendor new themes"
           git push
 
-      - name: Generate App Token
-        id: app-token
+      - name: Generate App Token for comments
+        id: app-token-comment
         if: steps.new-themes.outputs.themes != ''
         uses: actions/create-github-app-token@v1
         with:
@@ -275,7 +275,7 @@ jobs:
           VALIDATE_ERRORS: ${{ steps.validate.outputs.has_errors }}
           VENDORED: ${{ steps.vendor.outputs.vendored }}
         with:
-          github-token: ${{ steps.app-token.outputs.token }}
+          github-token: ${{ steps.app-token-comment.outputs.token }}
           script: |
             const duplicateResults = (process.env.DUPLICATE_RESULTS || '').trim();
             const duplicateErrors = process.env.DUPLICATE_ERRORS === 'true';
