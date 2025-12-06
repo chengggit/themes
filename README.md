@@ -1,7 +1,7 @@
 # Better Lyrics Theme Store
 
 [![Install Better Lyrics Harmonizer](https://img.shields.io/badge/Install-Better%20Lyrics%20Harmonizer-blue?logo=github)](https://github.com/apps/better-lyrics-harmonizer/installations/new)
-[![Themes](https://badgen.net/https/raw.githubusercontent.com/better-lyrics/themes/master/index.json/themes/length?label=themes)](https://github.com/better-lyrics/themes)
+[![Themes](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbetter-lyrics%2Fthemes%2Fmaster%2Findex.json&query=%24.themes.length&label=themes&color=blue)](https://github.com/better-lyrics/themes)
 [![Last Updated](https://badgen.net/github/last-commit/better-lyrics/themes)](https://github.com/better-lyrics/themes/commits)
 [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/UsHE3d5fWF)
 [![License](https://badgen.net/badge/license/MIT/blue)](https://github.com/better-lyrics/themes/blob/master/LICENSE)
