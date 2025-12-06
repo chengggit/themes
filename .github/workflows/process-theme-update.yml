@@ -160,6 +160,7 @@ jobs:
             -d '{
               "repo": "${{ steps.payload.outputs.repo }}",
               "commit": "${{ steps.payload.outputs.commit }}",
+              "installationId": ${{ github.event.client_payload.installationId }},
               "success": true,
               "description": "Published v${{ steps.metadata.outputs.version }}"
             }'
@@ -173,6 +174,7 @@ jobs:
             -d '{
               "repo": "${{ steps.payload.outputs.repo }}",
               "commit": "${{ steps.payload.outputs.commit }}",
+              "installationId": ${{ github.event.client_payload.installationId }},
               "success": false,
               "description": "${{ steps.check-registered.outputs.error || steps.version-check.outputs.error || steps.validate.outputs.error || 'Update failed' }}"
             }'
