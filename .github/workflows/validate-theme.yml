@@ -3,11 +3,11 @@ name: Validate Theme
 on:
   pull_request_target:
     paths:
-      - 'index.json'
+      - "index.json"
   workflow_dispatch:
     inputs:
       theme:
-        description: 'Theme repo to validate (e.g. username/theme-name)'
+        description: "Theme repo to validate (e.g. username/theme-name)"
         required: true
         type: string
 
@@ -52,7 +52,7 @@ jobs:
           GH_TOKEN: ${{ steps.app-token-commit.outputs.token }}
         run: |
           git config user.name "better-lyrics-harmonizer[bot]"
-          git config user.email "2418247+better-lyrics-harmonizer[bot]@users.noreply.github.com"
+          git config user.email "248079304+better-lyrics-harmonizer[bot]@users.noreply.github.com"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.event.pull_request.head.repo.full_name }}.git"
           git add index.json
           git commit -m "chore: format index.json"
@@ -67,7 +67,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Get new themes
         id: new-themes
@@ -280,7 +280,7 @@ jobs:
           GH_TOKEN: ${{ steps.app-token-vendor.outputs.token }}
         run: |
           git config user.name "better-lyrics-harmonizer[bot]"
-          git config user.email "2418247+better-lyrics-harmonizer[bot]@users.noreply.github.com"
+          git config user.email "248079304+better-lyrics-harmonizer[bot]@users.noreply.github.com"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.event.pull_request.head.repo.full_name }}.git"
           git add themes/ index.lock.json
 
@@ -370,7 +370,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Collect existing theme IDs
         id: existing-ids
