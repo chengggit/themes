@@ -44,7 +44,7 @@ $menu-padding: 0 10px;
 }
 
 @font-face {
-  font-family: "Papyrus";
+  font-family: "MySanFrancisco";
   src: url("https://raw.githubusercontent.com/sahibjotsaggu/San-Francisco-Pro-Fonts/refs/heads/master/SF-Pro-Display-Bold.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
