@@ -147,6 +147,7 @@ jobs:
       - name: Stage all changes
         id: stage
         run: |
+          rm -rf theme-repo
           git add .
           git diff --staged --quiet || echo "has_changes=true" >> $GITHUB_OUTPUT
 
