@@ -9,12 +9,12 @@
       "version": "1.0.0"
     },
     {
-      "commit": "d4be7d89b278d07bab39755517090f44851a6969",
+      "commit": "7beac8d65a687e19b4ed473c527226f9a69113d7",
       "id": "apple-music-test",
-      "integrity": "sha256-d155dbbe7a1bc8b65e98f6ea37b3c532f606a6c898a43affc2fb99e908585a76",
-      "locked": "2025-12-23T11:39:49Z",
+      "integrity": "sha256-18456c19ce0d4d8edaba86a90abb50039cb59ed03ff519bd2aa685091b145e2e",
+      "locked": "2025-12-23T11:43:16Z",
       "repo": "boidushya/apple-music",
-      "version": "1.1.32"
+      "version": "1.1.33"
     },
     {
       "commit": "59d87ee821d746c5bc4ac107b70f6c5171f1c4a4",
@@ -33,6 +33,6 @@
       "version": "1.0.0"
     }
   ],
-  "updated": "2025-12-23T11:39:49Z",
+  "updated": "2025-12-23T11:43:16Z",
   "version": 1
 }
