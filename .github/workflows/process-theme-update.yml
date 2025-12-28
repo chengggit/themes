@@ -386,6 +386,8 @@ jobs:
         id: stage
         if: steps.vendor.outputs.vendored != '' || steps.cleanup.outputs.removed != ''
         run: |
+          rm -f index_repos.txt lock_repos.txt
+          rm -rf theme-repo
           git add .
           git diff --staged --quiet || echo "has_changes=true" >> $GITHUB_OUTPUT
 
@@ -401,6 +403,7 @@ jobs:
 
       - name: Summary
         if: always()
+        continue-on-error: true
         run: |
           echo "## Theme Vendoring Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
