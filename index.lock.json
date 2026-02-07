@@ -25,14 +25,22 @@
       "version": "1.0.0"
     },
     {
-      "commit": "4cfe10e446a5dd38cd58080c3c5e04cf57f87bf6",
+      "commit": "d21265fc6f2a4937c8db6baa6c890a07e4eca8dc",
       "id": "recover-theme",
-      "integrity": "sha256-3829415cba0da2fe62a29dccb9ea1295f02ae8c31f005b32a0e5fe6b7aa6b35d",
-      "locked": "2026-01-11T02:50:24Z",
+      "integrity": "sha256-dc115d4bd11dbaf157f18c6b96a3c9f8abab2bbf43bebb778947213fb18dec7c",
+      "locked": "2026-02-01T15:52:58Z",
       "repo": "mukeenanyafiq/recover-theme",
-      "version": "1.0.70"
+      "version": "1.1.1"
+    },
+    {
+      "commit": "64545f2300d9f3b0f3b7c8d6fc7420b46bedb256",
+      "id": "dynamic-background",
+      "integrity": "sha256-901b77f699cc54b3aa0b8eb95df9eb20fbe4986ce38cd2705eb7dbd5ae16b038",
+      "locked": "2026-02-06T11:45:56Z",
+      "repo": "chengggit/YouTube-Music-Dynamic-Theme",
+      "version": "3.0.3"
     }
   ],
-  "updated": "2026-01-18T18:12:48Z",
+  "updated": "2026-02-06T11:45:56Z",
   "version": 1
 }
